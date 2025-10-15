@@ -10,4 +10,8 @@ docker run \
     -p 5432:5432 \
     -d postgres:16
 ```
+Клонируем этот репозиторий (или скачиваем .zip)
+```bash
+git glone https://github.com/a1pha-dev/1st_task
+```
 Запускаем `Main.main()`
