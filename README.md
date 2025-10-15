@@ -10,4 +10,4 @@ docker run \
     -p 5432:5432 \
     -d postgres:16
 ```
-Запустите `Main.main()`
+Запускаем `Main.main()`
