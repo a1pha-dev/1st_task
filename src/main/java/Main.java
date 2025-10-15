@@ -10,7 +10,7 @@ public class Main {
 
         while (true) {
             System.out.println("""
-                        \nВыберите действие:
+                        Выберите действие:
                         1. Показать все таблицы
                         2. Подключиться или создать таблицу
                         3. Развернуть строку
@@ -62,7 +62,7 @@ public class Main {
         }
 
         DatabaseUtil.insertString(table, s1, modified);
-        System.out.printf("\nСтрока %s добавлена.", modified);
+        System.out.printf("Строка %s добавлена.\n", modified);
     }
 
     private static void export(String table) {
