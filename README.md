@@ -10,7 +10,4 @@ docker run \
     -p 5432:5432 \
     -d postgres:16
 ```
-Запуск приложения:
-```bash
-./gradlew run
-```
+Запустите `Main.main()`
