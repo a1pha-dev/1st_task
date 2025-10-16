@@ -51,6 +51,10 @@ public class Main {
     private static void addString(Scanner scanner, String table, Boolean reverse) {
         System.out.print("Введите строку: ");
         String s1 = scanner.nextLine();
+        while (s1.length() <= 50) {
+            System.out.println("Строка должна быть длиннее 50 символов.");
+            s1 = scanner.nextLine();
+        }
 
         String modified;
         if (reverse) {
@@ -58,6 +62,10 @@ public class Main {
         } else {
             System.out.print("Введите вторую строку: ");
             String s2 = scanner.nextLine();
+            while (s2.length() <= 50) {
+                System.out.println("Строка должна быть длиннее 50 символов.");
+                s2 = scanner.nextLine();
+            }
             modified = s1 + s2;
         }
 
