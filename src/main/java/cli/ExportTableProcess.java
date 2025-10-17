@@ -14,10 +14,8 @@ public class ExportTableProcess {
         String tableName = repository.getTableName();
         try {
             List<Map<String, Object>> data = repository.fetchAll();
-            String response = excel.ExcelExporter.exportToExcel(
-                    tableName, data);
+            String response = excel.ExcelExporter.exportToExcel(tableName, data);
             System.out.printf("Данные успешно экспортированы в %s\n", response);
-            System.out.printf("Ошибка при экспорте данных: %s\n", response);
         } catch (SQLException e) {
             System.out.printf("Ошибка при получении данных из таблицы: %s\n", e.getMessage());
         }

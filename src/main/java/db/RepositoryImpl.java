@@ -73,7 +73,6 @@ public class RepositoryImpl implements Repository {
                         id SERIAL PRIMARY KEY,
                         original TEXT NOT NULL,
                         modified TEXT NOT NULL,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     );
                 """, tableName);
 
