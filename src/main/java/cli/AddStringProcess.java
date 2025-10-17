@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 public class AddStringProcess {
 
-    public static void run_reverse(Scanner scanner, RepositoryImpl repository) {
+    public static void runReverse(Scanner scanner, RepositoryImpl repository) {
         if (requireTable(repository)) return;
         StringBuffer data = inputString(scanner, "Введите строку: ");
         data.reverse();
         writeToRepository(repository, data);
     }
 
-    public static void run_concatenate(Scanner scanner, RepositoryImpl repository) {
+    public static void runConcatenate(Scanner scanner, RepositoryImpl repository) {
         if (requireTable(repository)) return;
         StringBuffer data = inputString(scanner, "Введите первую строку: ");
         System.out.print("Введите вторую строку: ");
