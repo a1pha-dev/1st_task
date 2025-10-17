@@ -72,7 +72,7 @@ public class RepositoryImpl implements Repository {
                     CREATE TABLE %s (
                         id SERIAL PRIMARY KEY,
                         original TEXT NOT NULL,
-                        modified TEXT NOT NULL,
+                        modified TEXT NOT NULL
                     );
                 """, tableName);
 
