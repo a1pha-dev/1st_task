@@ -1,16 +1,20 @@
-import db.DatabaseUtil;
-import excel.ExcelExporter;
+import cli.AddStringProcess;
+import cli.ConnectOrCreateTableProcess;
+import cli.ExportTableProcess;
+import cli.PrintTableProcess;
+import db.RepositoryImpl;
 
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String currentTable = null;
+        RepositoryImpl repository = RepositoryImpl.getInstance();
+        repository.setTableName(null);
 
         while (true) {
-            System.out.println("""
-                        Выберите действие:
+            System.out.print("""
+                    Выберите действие:
                         1. Показать все таблицы
                         2. Подключиться или создать таблицу
                         3. Развернуть строку
@@ -20,17 +24,11 @@ public class Main {
                     """);
 
             switch (scanner.nextLine().trim()) {
-                case "1" -> DatabaseUtil.printAllTables();
-                case "2" -> currentTable = DatabaseUtil.connectOrCreateTable(scanner);
-                case "3" -> {
-                    if (requireTable(currentTable)) addString(scanner, currentTable, true);
-                }
-                case "4" -> {
-                    if (requireTable(currentTable)) addString(scanner, currentTable, false);
-                }
-                case "5" -> {
-                    if (requireTable(currentTable)) export(currentTable);
-                }
+                case "1" -> PrintTableProcess.run(repository);
+                case "2" -> ConnectOrCreateTableProcess.run(scanner, repository);
+                case "3" -> AddStringProcess.run_reverse(scanner, repository);
+                case "4" -> AddStringProcess.run_concatenate(scanner, repository);
+                case "5" -> ExportTableProcess.run(repository);
                 case "0" -> {
                     System.out.println("Выход.");
                     return;
@@ -38,42 +36,5 @@ public class Main {
                 default -> System.out.println("Некорректный выбор.");
             }
         }
-    }
-
-    private static boolean requireTable(String table) {
-        if (table == null) {
-            System.out.println("Сначала подключитесь или создайте таблицу.");
-            return false;
-        }
-        return true;
-    }
-
-    private static void addString(Scanner scanner, String table, Boolean reverse) {
-        System.out.print("Введите строку: ");
-        String s1 = scanner.nextLine();
-        while (s1.length() <= 50) {
-            System.out.println("Строка должна быть длиннее 50 символов.");
-            s1 = scanner.nextLine();
-        }
-
-        String modified;
-        if (reverse) {
-            modified = new StringBuilder(s1).reverse().toString();
-        } else {
-            System.out.print("Введите вторую строку: ");
-            String s2 = scanner.nextLine();
-            while (s2.length() <= 50) {
-                System.out.println("Строка должна быть длиннее 50 символов.");
-                s2 = scanner.nextLine();
-            }
-            modified = s1 + s2;
-        }
-
-        DatabaseUtil.insertString(table, s1, modified);
-        System.out.printf("Строка %s добавлена.\n", modified);
-    }
-
-    private static void export(String table) {
-        ExcelExporter.exportToExcel(table, DatabaseUtil.getAllRows(table));
     }
 }

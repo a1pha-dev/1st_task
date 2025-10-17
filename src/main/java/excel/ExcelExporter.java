@@ -8,12 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ExcelExporter {
-    public static void exportToExcel(String tableName, List<Map<String, Object>> rows) {
-        if (rows.isEmpty()) {
-            System.out.println("Нет данных для экспорта.");
-            return;
-        }
-
+    public static String exportToExcel(String tableName, List<Map<String, Object>> rows) {
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet(tableName);
 
@@ -33,10 +28,10 @@ public class ExcelExporter {
             String fileName = tableName + ".xlsx";
             try (FileOutputStream out = new FileOutputStream(fileName)) {
                 workbook.write(out);
+                return fileName;
             }
-            System.out.println("Экспортировано в " + fileName);
         } catch (Exception e) {
-            System.err.println("Ошибка экспорта: " + e.getMessage());
+            return e.getMessage();
         }
     }
 }
