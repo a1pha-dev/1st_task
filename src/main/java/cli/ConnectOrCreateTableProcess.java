@@ -20,6 +20,5 @@ public class ConnectOrCreateTableProcess {
         } catch (Exception e) {
             System.out.printf("Произошла ошибка: %s\n", e.getMessage());
         }
-
     }
 }

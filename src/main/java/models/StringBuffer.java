@@ -5,6 +5,9 @@ public class StringBuffer {
     private String modified;
 
     public StringBuffer(String original) {
+        if (original.length() <= 50) {
+            throw new IllegalArgumentException("Строка должна быть длиннее 50 символов.");
+        }
         this.original = original;
     }
 
