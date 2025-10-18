@@ -69,7 +69,7 @@ public class RepositoryImpl implements Repository {
         }
 
         String sql = String.format("""
-                    CREATE TABLE \"%s\" (
+                    CREATE TABLE "%s" (
                         id SERIAL PRIMARY KEY,
                         original TEXT NOT NULL,
                         modified TEXT NOT NULL
@@ -118,7 +118,7 @@ public class RepositoryImpl implements Repository {
 
     private String sanitize(String name) {
         //TODO: Add SQL-Injection checking
-        return name == null ? "" : name
+        return name == null ? "" : name;
     }
 
     private void requireTable() {
