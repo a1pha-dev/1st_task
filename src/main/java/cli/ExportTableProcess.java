@@ -7,7 +7,7 @@ import java.util.Map;
 public class ExportTableProcess {
 
     public static void run(db.RepositoryImpl repository) {
-        if (repository.getTableName().isEmpty()) {
+        if (repository.getTableName() == null || repository.getTableName().isEmpty()) {
             System.out.println("Сначала подключитесь или создайте таблицу.");
             return;
         }
