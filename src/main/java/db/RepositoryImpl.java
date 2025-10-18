@@ -63,7 +63,6 @@ public class RepositoryImpl implements Repository {
         requireTable();
         List<String> existing = getAllTableNames();
 
-        tableName = sanitize(tableName);
         if (existing.contains(tableName)) {
             return tableName;
         }
@@ -86,7 +85,7 @@ public class RepositoryImpl implements Repository {
     public void insert(StringBuffer data) throws SQLException, IllegalStateException {
         requireTable();
 
-        String sql = String.format("INSERT INTO \"%s\" (original, modified) VALUES (?, ?)", sanitize(tableName));
+        String sql = String.format("INSERT INTO \"%s\" (original, modified) VALUES (?, ?)", tableName);
         Connection conn = getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, data.getOriginal());
@@ -99,7 +98,7 @@ public class RepositoryImpl implements Repository {
         requireTable();
 
         List<Map<String, Object>> rows = new ArrayList<>();
-        String sql = String.format("SELECT * FROM \"%s\" ORDER BY id", sanitize(tableName));
+        String sql = String.format("SELECT * FROM \"%s\" ORDER BY id", tableName);
 
         Connection conn = getConnection();
         Statement stmt = conn.createStatement();
