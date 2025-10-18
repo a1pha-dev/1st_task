@@ -86,7 +86,7 @@ public class RepositoryImpl implements Repository {
     public void insert(StringBuffer data) throws SQLException, IllegalStateException {
         requireTable();
 
-        String sql = "INSERT INTO " + sanitize(tableName) + " (original, modified) VALUES (?, ?)";
+        String sql = String.format("INSERT INTO \"%s\" (original, modified) VALUES (?, ?)", sanitize(tableName));
         Connection conn = getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, data.getOriginal());
@@ -99,7 +99,7 @@ public class RepositoryImpl implements Repository {
         requireTable();
 
         List<Map<String, Object>> rows = new ArrayList<>();
-        String sql = "SELECT * FROM " + sanitize(tableName) + " ORDER BY id";
+        String sql = String.format("SELECT * FROM \"%s\" ORDER BY id", sanitize(tableName));
 
         Connection conn = getConnection();
         Statement stmt = conn.createStatement();
