@@ -69,7 +69,7 @@ public class RepositoryImpl implements Repository {
         }
 
         String sql = String.format("""
-                    CREATE TABLE %s (
+                    CREATE TABLE \"%s\" (
                         id SERIAL PRIMARY KEY,
                         original TEXT NOT NULL,
                         modified TEXT NOT NULL
